@@ -47,6 +47,11 @@
     display: none;
 }
 
+/* Show the checkmark when checked */
+.checkbox_container input:checked ~ .checkmark:after {
+    display: block;
+}
+
 /* Style the checkmark/indicator */
 .checkbox_container .checkmark:after {
     left: 9px;
