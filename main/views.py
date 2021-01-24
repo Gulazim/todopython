@@ -44,3 +44,8 @@ def add_books(request):
     shelf = Books(title=title, subtitle=subtitle, description=description, price=price, genre=genre, author=author, year=year)
     shelf.save()
     return redirect (books)
+
+def delete_todo(request, id):
+    todo = ToDo.objects.get(id=id)
+    todo.delete()
+    return redirect(test)
