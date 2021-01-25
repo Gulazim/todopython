@@ -1,17 +1,13 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Books</title>
     <!--<link rel="stylesheet" href="./styles/index2.css"> -->
     <link rel="stylesheet" href="{% static 'styles/index2.css' %}">
-    <!--<link rel="stylesheet" href="./styles/index.css"> -->
-    <link rel="stylesheet" href="{% static 'styles/checkbox.css' %}">
 </head>
-
 <body>
     <section>
         <div class="create_books">
@@ -24,15 +20,20 @@
                 <input class="create_input" type="number" placeholder="Напишите сюда цену" name="price">
                 <input class="create_input" type="text" placeholder="Напишите сюда жанр" name="genre">
                 <input class="create_input" type="text" placeholder="Напишите сюда автора" name="author">
-                <input class="create_input" type="datetime-local" placeholder="Напишите сюда год выхода книги"
-                    name="date">
+                <input class="create_input" type="datetime-local" placeholder="Напишите сюда год выхода книги" name="date"
+                />
                 <button class="create_button">Добавить</button>
             </form>
         </div>
         <div class="todo_books">
 
             {% for book in book_list %}
-            <div class="item">
+            <div class="todo_item
+                {% if book.is_favorite %}
+                    marked
+                {% endif %}
+
+            ">
                 <div class="todo_item_header">
                     <h2>{{ book.title }}</h2>
                     <h4>{{ book.subtitle }}</h4>
@@ -44,19 +45,17 @@
                 <div class="todo_item_footer">
                     <p> {{ book.date }}</p>
                     <div class="action_buttons">
-                        {% if todo.is_favorite %}
-                            <a href="{% url 'mark-todo' todo.id %}"><img src="{% static './icons/marked.png' %}" /></a>
+                        {% if book.is_favorite %}
+                            <a href="{% url 'mark-book' book.id %}"><img src="{% static './icons/marked.png' %}" /></a>
                         {% else %}
-                            <a href="{% url 'mark-todo' todo.id %}"><img src="{% static './icons/unmarked.png' %}" /></a>
+                            <a href="{% url 'mark-book' book.id %}"><img src="{% static './icons/unmarked.png' %}" /></a>
                         {% endif %}
-                            <a href="{% url 'delete-todo' todo.id %}"><img src="{% static './icons/delete.png' %}"/></a>
+                        <a href="{% url 'delete-book' book.id %}"><img src="{% static './icons/delete.png' %}"/></a>
                     </div>
                 </div>
-
             </div>
-            {% endfor %}
+        {% endfor %}
         </div>
     </section>
 </body>
-
 </html>

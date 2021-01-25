@@ -62,3 +62,14 @@ def close_todo(request, id):
     todo.is_closed = not todo.is_closed
     todo.save()
     return redirect(test)
+
+def delete_book(request, id):
+    book = Book.objects.get(id=id)
+    todo.delete()
+    return redirect(book)
+
+def mark_book(request, id):
+    book = Book.objects.get(id=id)
+    book.is_favorite = True
+    book.save()
+    return redirect(book)
