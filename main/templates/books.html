@@ -13,25 +13,30 @@
 <body>
     <section>
         <div class="create_books">
-            <form action="{% url 'add-books' %}" method="POST">
+            <form action="{% url 'add-book' %}" method="POST">
                 {% csrf_token %}
-                <input class="create_input" type="text" placeholder="Напишите сюда заголовок" name="books_title">
-                <input class="create_input" type="text" placeholder="Напишите сюда подзаголовок" name="books_subtitle">
-                <input class="create_input" type="text" placeholder="Напишите сюда описание" name="books_description">
-                <input class="create_input" type="text" placeholder="Напишите сюда цену" name="books_price">
-                <input class="create_input" type="text" placeholder="Напишите сюда жанр" name="books_genre">
-                <input class="create_input" type="text" placeholder="Напишите сюда автора" name="books_author">
-                <input class="create_input" type="text" placeholder="Напишите сюда год выхода книги" name="books_year">
+                <h1>Добавить книгу</h1>
+                <input class="create_input" type="text" placeholder="Напишите сюда заголовок" name="title">
+                <input class="create_input" type="text" placeholder="Напишите сюда подзаголовок" name="subtitle">
+                <input class="create_input" type="text" placeholder="Напишите сюда описание" name="description">
+                <input class="create_input" type="number" placeholder="Напишите сюда цену" name="price">
+                <input class="create_input" type="text" placeholder="Напишите сюда жанр" name="genre">
+                <input class="create_input" type="text" placeholder="Напишите сюда автора" name="author">
+                <input class="create_input" type="datetime-local" placeholder="Напишите сюда год выхода книги" name="date">
                 <button class="create_button">Добавить</button>
             </form>
         </div>
 
         <div class="todo_books">
-            {% for books in books_list %}
+            {% for book in book_list %}
             <div class="item">
-                <h2>{{ books.title }}</h2>
-                <h4>{{ books.author }}</h4>
-                <h4>{{ books.price }}</h4>
+                <h2>{{ book.title }}</h2>
+                <h4>{{ book.subtitle }}</h4>
+                <h4>{{ book.description }}</h4>
+                <h4>{{ book.price }}</h4>
+                <h4>{{ book.genre }}</h4>
+                <h4>{{ book.author }}</h4>
+                <h4>{{ book.date }}</h4>
             </div>
             {% endfor %}
         </div>
